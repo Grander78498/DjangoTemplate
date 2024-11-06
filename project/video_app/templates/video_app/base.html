@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="{% static 'video_app/css/styles.css' %}">
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    </head>
+    <body>
+        {% block header %}
+
+        {% endblock %}
+        {% block main %}
+        
+        {% endblock %}
+        {% block footer %}
+        
+        {% endblock %}
+    </body>
+    <script src="{% static 'video_app/js/script.js' %}"></script>
+</html>

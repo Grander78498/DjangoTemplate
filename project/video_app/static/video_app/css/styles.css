@@ -1,0 +1,12 @@
+.mainText {
+    color:blue;
+}
+
+.progress-wrapper {
+    width:100%;
+}
+.progress-wrapper .progress {
+    background-color:green;
+    width:0%;
+    padding:5px 0px 5px 0px;
+}
