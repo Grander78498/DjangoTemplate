@@ -50,6 +50,7 @@ services:
       - PG_HOST=pgdb
       - CELERY_BROKER=redis://redis:6379
       - CELERY_BACKEND=redis://redis:6379
+      - TRITON_HOST=triton
     depends_on:
       web:
         condition: service_started
