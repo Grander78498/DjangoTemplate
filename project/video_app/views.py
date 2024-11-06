@@ -1,5 +1,6 @@
 import json
 import time
+import base64
 
 from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
@@ -7,6 +8,7 @@ from django.http import HttpRequest, HttpResponseRedirect, HttpResponse
 from .models import FileUpload
 from .forms import UploadFileForm
 from . import utils
+from . import tasks
 
 
 def root_page(request: HttpRequest):
@@ -17,14 +19,15 @@ def root_page(request: HttpRequest):
 
 def main_page(request):
     if request.method == 'POST':
-        print(request.POST, request.FILES)
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
-            file = FileUpload.objects.create(file=request.FILES['file'])
-            file_path = file.file.path
-            client = utils.get_client()
-            result = utils.predict_model(file_path, client)
-            print(result)
+            file = request.FILES['file'].read()
+            byte = base64.b64encode(file)
+
+            data = {'file': byte.decode('utf-8'),
+                    'name': request.FILES['file'].name}
+
+            tasks.task_upload_file.delay(data=data)
             return HttpResponse('Fine')
     else:
         form = UploadFileForm()
