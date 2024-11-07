@@ -43,7 +43,7 @@ function postFile() {
     }).then((response) => {
         console.log(response);
         setTimeout(() => {
-            fetch('/').then((response) => console.log(response));
+            fetch('/').then((response) => document.ht);
         }, 2 * 1000);
     });
 }
