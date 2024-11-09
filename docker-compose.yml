@@ -5,7 +5,7 @@ services:
     command: python3 -m gunicorn django_video.wsgi:application --bind 0.0.0.0:8003 --log-level debug
     volumes:
       - static_volume:/staticfiles
-      - ./mediafiles:/mediafiles
+      - media_volume:/mediafiles
       - ./project:/app/
     expose:
       - 8003
@@ -62,7 +62,7 @@ services:
     build: ./nginx
     volumes:
       - static_volume:/staticfiles
-      - ./mediafiles:/mediafiles
+      - media_volume:/mediafiles
     ports:
       - 1337:80
     depends_on:
@@ -71,3 +71,4 @@ services:
 volumes:
   pgdbdata:
   static_volume:
+  media_volume:

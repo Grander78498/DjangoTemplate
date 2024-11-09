@@ -225,7 +225,9 @@
 #     if client!=-1:
 #         return client
 #     else:
-#         hostname = os.environ.get("TRITON_HOST", 'localhost')
+#         hostname = os.environ.get("TRITON_HOST")
+#         if hostname is None:
+#             raise ValueError('Env file not ')
 #         client = httpclient.InferenceServerClient(url=f'{hostname}:8000')
 #         return client
 

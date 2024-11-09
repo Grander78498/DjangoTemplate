@@ -7,11 +7,21 @@ class CustomUserCreationForm(UserCreationForm):
 
     class Meta:
         model = CustomUser
-        fields = ("first_name", "last_name", "patronymic", "email")
+        fields = ("email", "is_superuser")
+        labels = {
+            "email": "Электронная почта",
+            "is_superuser": "Аккаунт для HR?",
+            "password1": "Пароль",
+            "password2": "Подтверждение пароля",
+            "password": "Пароль"
+        }
+        help_texts = {
+            "is_superuser": "ЗАГЛУШКА",
+        }
 
 
 class CustomUserChangeForm(UserChangeForm):
 
     class Meta:
         model = CustomUser
-        fields = ("first_name", "last_name", "patronymic", "email")
+        fields = ("first_name", "last_name", "patronymic")

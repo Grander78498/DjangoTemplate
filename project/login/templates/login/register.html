@@ -1,8 +1,16 @@
 {% extends 'video_app/base.html' %}
 {% block main %}
+{{ form.errors }}
 <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Зарегистрироваться</button>
+    {% for field in form %}
+    <div>
+        {% if field != form.password %}
+            <label> {{ field.label }}</label>
+            <p>{{ field }}</p>
+        {% endif %}
+    </div>
+    {% endfor %}
+    <button type="submit">Обновить данные</button>
 </form>
 {% endblock %}
